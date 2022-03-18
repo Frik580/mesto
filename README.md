@@ -12,5 +12,5 @@
 
 **Проект на GitHub Pages**
 
-* [Ссылка на проект](https://frik580.github.io/russian-travel/)
+* [Ссылка на проект](https://frik580.github.io/mesto/)
 
