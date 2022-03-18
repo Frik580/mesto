@@ -1,0 +1,32 @@
+.profile__add-button-vector {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+.profile__add-button-vector:before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    border-left: 2px solid #fff;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-sizing: border-box;
+}
+
+.profile__add-button-vector:after {
+    position: absolute;
+    content: '';
+    height: 22px;
+    border-left: 2px solid #fff;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transform: rotate(90deg);
+    box-sizing: border-box;
+}

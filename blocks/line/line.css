@@ -1,0 +1,13 @@
+.line {
+    max-width: 880px;
+    height: 1px;
+    background-color: #545454;
+    opacity: .7;
+    margin: 0 auto 40px;
+}
+
+@media (max-width: 800px) {
+    .line {
+        margin-bottom: 42px;
+    }
+}

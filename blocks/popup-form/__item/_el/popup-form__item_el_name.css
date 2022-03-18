@@ -1,0 +1,9 @@
+.popup-form__item_el_name {
+    margin-bottom: 17px;
+}
+
+@media (max-width: 500px) {
+    .popup-form__item_el_name {
+        margin-bottom: 21px;
+    }
+}
