@@ -3,14 +3,21 @@
     flex-wrap: wrap;
     max-width: 880px;
     min-height: 74px;
-    margin: 45px auto 0;
-    padding: 0 19px;
+    margin: 45px auto 40px;
+    padding: 0;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media (max-width: 1000px) {
+    .header {
+        padding-left: 27px;
+    }
 }
 
 @media (max-width: 800px) {
     .header {
         min-height: 56px;
         margin-top: 28px;
-        padding-left: 27px;
+        margin-bottom: 42px;
     }
 }

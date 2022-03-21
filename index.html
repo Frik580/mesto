@@ -1,93 +1,131 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
-</head>
-<body class="root">
-    <header class="header">
-      <a href="#" class="logo hover"></a>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+  </head>
 
+  <body class="root">
+    <header class="header">
+      <a href="#" class="header__logo hover"></a>
+    </header>
     <main class="content">
-      <div class="line"></div>
       <section class="profile">
-        <img src="./images/image.png" class="profile__avatar" alt="">
+        <img src="./images/image.png" class="profile__avatar" alt="" />
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__text">Исследователь океана</p>
-          <button class="profile__edit-button hover"></button>
+          <button class="profile__edit-button hover" type="button"></button>
         </div>
-        <button class="profile__add-button hover"></button>
+        <button class="profile__add-button hover" type="button"></button>
       </section>
 
       <section class="elements">
-        <div class="element">
-          <img src="./images/Belluno_Italia_sm.png" class="element__pic" alt="">
+        <article class="element">
+          <img
+            src="./images/Belluno_Italia_sm.png"
+            class="element__pic"
+            alt="Дом в горах"
+          />
           <div class="element__info">
             <h2 class="element__title">Беллуно</h2>
-            <button class="element__like-button element__like-button_active hover"></button>
+            <button
+              class="element__like-button element__like-button_active hover"
+              type="button"
+            ></button>
           </div>
-        </div>
-        <div class="element">
-          <img src="./images/KannanDevanHills_Kerala_India_sm.png" class="element__pic" alt="">
+        </article>
+        <article class="element">
+          <img
+            src="./images/KannanDevanHills_Kerala_India_sm.png"
+            class="element__pic"
+            alt="Мотоциклист на дороге"
+          />
           <div class="element__info">
             <h2 class="element__title">Керала</h2>
-            <button class="element__like-button hover"></button>
+            <button class="element__like-button hover" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img src="./images/Qeshm_HormozganProvince_Iran_sm.png" class="element__pic" alt="">
+        </article>
+        <article class="element">
+          <img
+            src="./images/Qeshm_HormozganProvince_Iran_sm.png"
+            class="element__pic"
+            alt="Каньон"
+          />
           <div class="element__info">
             <h2 class="element__title">Хормозган</h2>
-            <button class="element__like-button hover"></button>
+            <button class="element__like-button hover" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img src="./images/Reine_Norwegen_sm.png" class="element__pic" alt="">
+        </article>
+        <article class="element">
+          <img
+            src="./images/Reine_Norwegen_sm.png"
+            class="element__pic"
+            alt="Дома на берегу моря"
+          />
           <div class="element__info">
             <h2 class="element__title">Рейне</h2>
-            <button class="element__like-button hover"></button>
+            <button class="element__like-button hover" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img src="./images/Rethymno_Greece_sm.png" class="element__pic" alt="">
+        </article>
+        <article class="element">
+          <img
+            src="./images/Rethymno_Greece_sm.png"
+            class="element__pic"
+            alt="Песчаный пляж"
+          />
           <div class="element__info">
             <h2 class="element__title">Ретимнон</h2>
-            <button class="element__like-button hover"></button>
+            <button class="element__like-button hover" type="button"></button>
           </div>
-        </div>
-        <div class="element">
-          <img src="./images/RoyalOntarioMuseum_Toronto_Canada_sm.png" class="element__pic" alt="">
+        </article>
+        <article class="element">
+          <img
+            src="./images/RoyalOntarioMuseum_Toronto_Canada_sm.png"
+            class="element__pic"
+            alt="Фасад здания"
+          />
           <div class="element__info">
             <h2 class="element__title">Королевский музей Онтарио</h2>
-            <button class="element__like-button hover"></button>
+            <button class="element__like-button hover" type="button"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
 
     <footer class="footer">
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
-    
+
     <div class="popup">
       <div class="popup__conteiner">
-        <button class="popup__close-button hover"></button>
-        <form class="popup-form"> 
+        <button class="popup__close-button hover" type="button"></button>
+        <form class="popup-form" name="profile-form">
           <h3 class="popup-form__title">Редактировать профиль</h3>
           <fieldset class="popup-form__input">
-            <input type="text" class="popup-form__item popup-form__item_el_name" name="name" value="Невведённое имя" required>
-            <input type="text" class="popup-form__item popup-form__item_el_job" name="job" value="Невведённая работа" required>
+            <input
+              type="text"
+              class="popup-form__item popup-form__item_el_name"
+              name="name"
+              placeholder="Введите имя"
+              required
+            />
+            <input
+              type="text"
+              class="popup-form__item popup-form__item_el_job"
+              name="job"
+              placeholder="Укажите профессию"
+              required
+            />
           </fieldset>
-          <fieldset class="popup-form__handlers">
-            <input type="submit" class="popup-form__button" value="Сохранить">
-          </fieldset>
-        </form>      
+          <button class="popup-form__button hover" type="submit">
+            Сохранить
+          </button>
+        </form>
       </div>
     </div>
-  <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

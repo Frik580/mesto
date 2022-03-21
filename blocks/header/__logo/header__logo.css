@@ -1,12 +1,12 @@
-.logo {
-    background-image: url(../../images/Logo_light.svg);
+.header__logo {
+    background-image: url(../../../images/Logo_light.svg);
     background-size: 142px 33px;
     height: 33px;
     width: 142px;
 }
 
 @media (max-width: 800px) {
-    .logo {
+    .header__logo {
         background-size: 104px 24.5px;
         height: 24.5px;
         width: 104px;
