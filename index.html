@@ -25,77 +25,9 @@
         </div>
         <button class="profile__add-button hover" type="button"></button>
       </section>
-
+      
       <section class="elements">
-        <article class="element">
-          <img
-            src="./images/Belluno_Italia_sm.png"
-            class="element__pic"
-            alt="Дом в горах"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Беллуно</h2>
-            <button
-              class="element__like-button element__like-button_active hover"
-              type="button"
-            ></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/KannanDevanHills_Kerala_India_sm.png"
-            class="element__pic"
-            alt="Мотоциклист на дороге"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Керала</h2>
-            <button class="element__like-button hover" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/Qeshm_HormozganProvince_Iran_sm.png"
-            class="element__pic"
-            alt="Каньон"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Хормозган</h2>
-            <button class="element__like-button hover" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/Reine_Norwegen_sm.png"
-            class="element__pic"
-            alt="Дома на берегу моря"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Рейне</h2>
-            <button class="element__like-button hover" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/Rethymno_Greece_sm.png"
-            class="element__pic"
-            alt="Песчаный пляж"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Ретимнон</h2>
-            <button class="element__like-button hover" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            src="./images/RoyalOntarioMuseum_Toronto_Canada_sm.png"
-            class="element__pic"
-            alt="Фасад здания"
-          />
-          <div class="element__info">
-            <h2 class="element__title">Королевский музей Онтарио</h2>
-            <button class="element__like-button hover" type="button"></button>
-          </div>
-        </article>
+        <ul class="elements__list"></ul>
       </section>
     </main>
 
@@ -103,10 +35,10 @@
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup__edit">
       <div class="popup__conteiner">
-        <button class="popup__close-button hover" type="button"></button>
-        <form class="popup-form" name="profile-form">
+        <button class="popup__close-button close-button__edit hover" type="button"></button>
+        <form class="popup-form popup-form__edit" name="profile-form">
           <h3 class="popup-form__title">Редактировать профиль</h3>
           <fieldset class="popup-form__input">
             <input
@@ -130,6 +62,45 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup__add">
+      <div class="popup__conteiner">
+        <button class="popup__close-button close-button__add hover" type="button"></button>
+        <form class="popup-form popup-form__add" name="elements-form">
+          <h3 class="popup-form__title">Новое место</h3>
+          <fieldset class="popup-form__input">
+            <input
+              type="text"
+              class="popup-form__item popup-form__item_el_place"
+              name="place"
+              placeholder="Название"
+              required
+            />
+            <input
+              type="url"
+              class="popup-form__item popup-form__item_el_url"
+              name="url"
+              placeholder="Ссылка на картинку"
+              required
+            />
+          </fieldset>
+          <button class="popup-form__button hover" type="submit">
+            Создать
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <template id="element-template">
+      <li class="element">
+        <img src="" class="element__pic" alt="">
+        <button class="element__del-button hover" type="button"></button>
+        <div class="element__info">
+          <h2 class="element__title"></h2>
+          <button class="element__like-button hover" type="button"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
