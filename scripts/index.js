@@ -92,17 +92,26 @@ const createElement = (items) => {
   element.querySelector(".element__pic").alt = items.name;
   element
     .querySelector(".element__like-button")
-    .addEventListener("click", (evt) => {
-      const eventTarget = evt.target;
-      eventTarget.classList.toggle("element__like-button_active");
-    });
+    .addEventListener("click", activationLikeButton);
   element
     .querySelector(".element__del-button")
     .addEventListener("click", () => {
       element.remove();
     });
+  element.querySelector(".element__pic").addEventListener("click", () => {
+    popupElementPic.classList.add("popup_opened");
+    document.addEventListener("keyup", onDocumentKeyUp);
+    popupPic.src = items.link;
+    popupText.textContent = items.name;
+    popupPic.alt = items.link;
+  });
 
   return element;
+};
+
+const activationLikeButton = (evt) => {
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle("element__like-button_active");
 };
 
 const renderCard = (items) => {
@@ -124,6 +133,7 @@ const handleCardFormSubmit = (event) => {
 const elements = initialCards.map(function (items) {
   return createElement(items);
 });
+
 elementsConteiner.append(...elements);
 formElementAdd.addEventListener("submit", handleCardFormSubmit);
 
@@ -132,5 +142,19 @@ function onDocumentKeyUp(event) {
   if (event.key === "Escape") {
     closePopupEdit();
     closePopupAdd();
+    closePopupPic();
   }
 }
+
+//POPUP с картинкой
+const popupElementPic = document.querySelector(".popup__zoom");
+const closeButtonPic = document.querySelector(".close-button__zoom");
+const popupPic = document.querySelector(".popup__pic");
+const popupText = document.querySelector(".popup__text");
+
+function closePopupPic() {
+  popupElementPic.classList.remove("popup_opened");
+  document.removeEventListener("keyup", onDocumentKeyUp);
+}
+
+closeButtonPic.addEventListener("click", closePopupPic);

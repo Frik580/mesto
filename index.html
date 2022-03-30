@@ -25,7 +25,7 @@
         </div>
         <button class="profile__add-button hover" type="button"></button>
       </section>
-      
+
       <section class="elements">
         <ul class="elements__list"></ul>
       </section>
@@ -37,7 +37,10 @@
 
     <div class="popup popup__edit">
       <div class="popup__conteiner">
-        <button class="popup__close-button close-button__edit hover" type="button"></button>
+        <button
+          class="popup__close-button close-button__edit hover"
+          type="button"
+        ></button>
         <form class="popup-form popup-form__edit" name="profile-form">
           <h3 class="popup-form__title">Редактировать профиль</h3>
           <fieldset class="popup-form__input">
@@ -65,7 +68,10 @@
 
     <div class="popup popup__add">
       <div class="popup__conteiner">
-        <button class="popup__close-button close-button__add hover" type="button"></button>
+        <button
+          class="popup__close-button close-button__add hover"
+          type="button"
+        ></button>
         <form class="popup-form popup-form__add" name="elements-form">
           <h3 class="popup-form__title">Новое место</h3>
           <fieldset class="popup-form__input">
@@ -93,11 +99,21 @@
 
     <template id="element-template">
       <li class="element">
-        <img src="" class="element__pic" alt="">
+        <img src="" class="element__pic" alt="" />
         <button class="element__del-button hover" type="button"></button>
         <div class="element__info">
           <h2 class="element__title"></h2>
           <button class="element__like-button hover" type="button"></button>
+        </div>
+        <div class="popup popup__zoom">
+          <div class="popup__zoom-conteiner">
+            <button
+              class="popup__close-button close-button__zoom hover"
+              type="button"
+            ></button>
+            <img src="" class="popup__pic" alt="" />
+            <p class="popup__text"></p>
+          </div>
         </div>
       </li>
     </template>
