@@ -1,7 +1,7 @@
 //Редактирование профиля
 const popupElementEdit = document.querySelector(".popup_edit");
 const editButton = document.querySelector(".profile__edit-button");
-const closeButtonEdit = document.querySelector(".close-button_edit");
+const closeButtonEdit = document.querySelector(".popup__close-button_edit");
 const formElementEdit = document.querySelector(".popup-form_edit");
 const nameInput = document.querySelector(".popup-form__item_el_name");
 const jobInput = document.querySelector(".popup-form__item_el_job");
@@ -35,7 +35,7 @@ formElementEdit.addEventListener("submit", handleProfileFormSubmit);
 
 const popupElementAdd = document.querySelector(".popup_add");
 const addButton = document.querySelector(".profile__add-button");
-const closeButtonAdd = document.querySelector(".close-button_add");
+const closeButtonAdd = document.querySelector(".popup__close-button_add");
 const delButton = document.querySelector(".element__del-button");
 const placeInput = document.querySelector(".popup-form__item_el_place");
 const urlInput = document.querySelector(".popup-form__item_el_url");
@@ -148,7 +148,7 @@ function onDocumentKeyUp(event) {
 
 //POPUP с картинкой
 const popupElementPic = document.querySelector(".popup_zoom");
-const closeButtonPic = document.querySelector(".close-button_zoom");
+const closeButtonPic = document.querySelector(".popup__close-button_zoom");
 const popupPic = document.querySelector(".popup__pic");
 const popupText = document.querySelector(".popup__text");
 
