@@ -1,62 +1,3 @@
-//Редактирование профиля
-const popupElementEdit = document.querySelector(".popup_edit");
-const editButton = document.querySelector(".profile__edit-button");
-const closeButtonEdit = document.querySelector(".popup__close-button_edit");
-const formElementEdit = document.querySelector(".popup-form_edit");
-const nameInput = document.querySelector(".popup-form__item_el_name");
-const jobInput = document.querySelector(".popup-form__item_el_job");
-const nameValue = document.querySelector(".profile__title");
-const jobValue = document.querySelector(".profile__text");
-
-function openPopupEdit() {
-  popupElementEdit.classList.add("popup_opened");
-  document.addEventListener("keyup", onDocumentKeyUp);
-  nameInput.value = nameValue.textContent;
-  jobInput.value = jobValue.textContent;
-}
-
-function closePopupEdit() {
-  popupElementEdit.classList.remove("popup_opened");
-  document.removeEventListener("keyup", onDocumentKeyUp);
-}
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  nameValue.textContent = nameInput.value;
-  jobValue.textContent = jobInput.value;
-  closePopupEdit();
-}
-
-editButton.addEventListener("click", openPopupEdit);
-closeButtonEdit.addEventListener("click", closePopupEdit);
-formElementEdit.addEventListener("submit", handleProfileFormSubmit);
-
-//Добавление нового элемента
-
-const popupElementAdd = document.querySelector(".popup_add");
-const addButton = document.querySelector(".profile__add-button");
-const closeButtonAdd = document.querySelector(".popup__close-button_add");
-const delButton = document.querySelector(".element__del-button");
-const placeInput = document.querySelector(".popup-form__item_el_place");
-const urlInput = document.querySelector(".popup-form__item_el_url");
-const elementsConteiner = document.querySelector(".elements__list");
-const formElementAdd = document.querySelector(".popup-form_add");
-
-function openPopupAdd() {
-  popupElementAdd.classList.add("popup_opened");
-  document.addEventListener("keyup", onDocumentKeyUp);
-  placeInput.value = "";
-  urlInput.value = "";
-}
-
-function closePopupAdd() {
-  popupElementAdd.classList.remove("popup_opened");
-  document.removeEventListener("keyup", onDocumentKeyUp);
-}
-
-addButton.addEventListener("click", openPopupAdd);
-closeButtonAdd.addEventListener("click", closePopupAdd);
-
 const initialCards = [
   {
     name: "Архыз",
@@ -84,41 +25,109 @@ const initialCards = [
   },
 ];
 
-const createElement = (items) => {
-  const template = document.querySelector("#element-template");
-  const element = template.content.querySelector(".element").cloneNode(true);
-  element.querySelector(".element__pic").src = items.link;
-  element.querySelector(".element__title").textContent = items.name;
-  element.querySelector(".element__pic").alt = items.name;
-  element
+//Общие фунции
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+}
+
+//Редактирование профиля
+
+const popupEditProfile = document.querySelector(".popup_edit");
+const buttonEditProfile = document.querySelector(".profile__edit-button");
+const buttonCloseEditProfile = document.querySelector(
+  ".popup__close-button_edit"
+);
+const formEditProfile = document.querySelector(".popup-form_edit");
+const nameInput = document.querySelector(".popup-form__item_el_name");
+const jobInput = document.querySelector(".popup-form__item_el_job");
+const nameValue = document.querySelector(".profile__title");
+const jobValue = document.querySelector(".profile__text");
+
+function openPopupToEditProfile() {
+  openPopup(popupEditProfile);
+  document.addEventListener("keyup", onProfileKeyUp);
+  nameInput.value = nameValue.textContent;
+  jobInput.value = jobValue.textContent;
+}
+
+function closePopupToEditProfile() {
+  closePopup(popupEditProfile);
+  document.removeEventListener("keyup", onProfileKeyUp);
+}
+
+function onProfileKeyUp(event) {
+  if (event.key === "Escape") {
+    closePopupToEditProfile();
+  }
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  nameValue.textContent = nameInput.value;
+  jobValue.textContent = jobInput.value;
+  closePopupToEditProfile();
+}
+
+buttonEditProfile.addEventListener("click", openPopupToEditProfile);
+buttonCloseEditProfile.addEventListener("click", closePopupToEditProfile);
+formEditProfile.addEventListener("submit", handleProfileFormSubmit);
+
+//Действия с карточками
+
+const popupAddCard = document.querySelector(".popup_add");
+const buttonAddCard = document.querySelector(".profile__add-button");
+const buttonCloseAddCard = document.querySelector(".popup__close-button_add");
+const cardsConteiner = document.querySelector(".elements__list");
+const formAddCard = document.querySelector(".popup-form_add");
+const placeInput = document.querySelector(".popup-form__item_el_place");
+const urlInput = document.querySelector(".popup-form__item_el_url");
+const template = document.querySelector("#element-template");
+
+const createCard = (items) => {
+  const card = template.content.querySelector(".element").cloneNode(true);
+  const image = card.querySelector(".element__pic");
+  image.src = items.link;
+  image.alt = items.name;
+  card.querySelector(".element__title").textContent = items.name;
+  card
     .querySelector(".element__like-button")
     .addEventListener("click", activationLikeButton);
-  element
-    .querySelector(".element__del-button")
-    .addEventListener("click", () => {
-      element.remove();
-    });
-  element.querySelector(".element__pic").addEventListener("click", () => {
-    popupElementPic.classList.add("popup_opened");
-    document.addEventListener("keyup", onDocumentKeyUp);
-    popupPic.src = items.link;
+  card.querySelector(".element__del-button").addEventListener("click", () => {
+    card.remove();
+  });
+  image.addEventListener("click", () => {
+    openPopup(popupZoomImage);
+    popupImage.src = items.link;
+    popupImage.alt = items.link;
     popupText.textContent = items.name;
-    popupPic.alt = items.link;
   });
 
-  return element;
+  return card;
 };
 
-const activationLikeButton = (evt) => {
-  const eventTarget = evt.target;
-  eventTarget.classList.toggle("element__like-button_active");
-};
+function openPopupToAddCard() {
+  openPopup(popupAddCard);
+  document.addEventListener("keyup", onCardsKeyUp);
+  placeInput.value = "";
+  urlInput.value = "";
+}
 
-const renderCard = (items) => {
-  elementsConteiner.prepend(createElement(items));
-};
+function closePopupToAddCard() {
+  closePopup(popupAddCard);
+  document.removeEventListener("keyup", onCardsKeyUp);
+}
 
-//Обработчик события
+function onCardsKeyUp(event) {
+  if (event.key === "Escape") {
+    closePopupToAddCard();
+  }
+}
+
 const handleCardFormSubmit = (event) => {
   event.preventDefault();
   const items = {};
@@ -127,34 +136,37 @@ const handleCardFormSubmit = (event) => {
   renderCard(items);
   placeInput.value = "";
   urlInput.value = "";
-  closePopupAdd();
+  closePopupToAddCard();
 };
 
-const elements = initialCards.map(function (items) {
-  return createElement(items);
+const activationLikeButton = (evt) => {
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle("element__like-button_active");
+};
+
+const renderCard = (items) => {
+  cardsConteiner.prepend(createCard(items));
+};
+
+const cards = initialCards.map(function (items) {
+  return createCard(items);
 });
 
-elementsConteiner.append(...elements);
-formElementAdd.addEventListener("submit", handleCardFormSubmit);
-
-//Функция закрытия popup по ESC
-function onDocumentKeyUp(event) {
-  if (event.key === "Escape") {
-    closePopupEdit();
-    closePopupAdd();
-    closePopupPic();
-  }
-}
+buttonAddCard.addEventListener("click", openPopupToAddCard);
+buttonCloseAddCard.addEventListener("click", closePopupToAddCard);
+cardsConteiner.append(...cards);
+formAddCard.addEventListener("submit", handleCardFormSubmit);
 
 //POPUP с картинкой
-const popupElementPic = document.querySelector(".popup_zoom");
-const closeButtonPic = document.querySelector(".popup__close-button_zoom");
-const popupPic = document.querySelector(".popup__pic");
+const popupZoomImage = document.querySelector(".popup_zoom");
+const buttonCloseZoomImage = document.querySelector(
+  ".popup__close-button_zoom"
+);
+const popupImage = document.querySelector(".popup__pic");
 const popupText = document.querySelector(".popup__text");
 
-function closePopupPic() {
-  popupElementPic.classList.remove("popup_opened");
-  document.removeEventListener("keyup", onDocumentKeyUp);
+function closePopupToZoomImage() {
+  closePopup(popupZoomImage);
 }
 
-closeButtonPic.addEventListener("click", closePopupPic);
+buttonCloseZoomImage.addEventListener("click", closePopupToZoomImage);

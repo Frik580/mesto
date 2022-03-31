@@ -1,16 +1,16 @@
 .profile__edit-button {
     width: 24px;
     height: 24px;
+    margin: 0;
+    padding: 0;
     cursor: pointer;
     background: none;
     outline: none;
     border: 1px solid #fff;
-    box-sizing: border-box;
     background-image: url(../../../images/EditButton.svg);
     background-size: 10px 10px;
     background-repeat: no-repeat;
     background-position: center;
-    align-self: center;
     position: absolute;
     right: -42px;
     top: 15px;
