@@ -1,8 +1,8 @@
 //Редактирование профиля
-const popupElementEdit = document.querySelector(".popup__edit");
+const popupElementEdit = document.querySelector(".popup_edit");
 const editButton = document.querySelector(".profile__edit-button");
-const closeButtonEdit = document.querySelector(".close-button__edit");
-const formElementEdit = document.querySelector(".popup-form__edit");
+const closeButtonEdit = document.querySelector(".close-button_edit");
+const formElementEdit = document.querySelector(".popup-form_edit");
 const nameInput = document.querySelector(".popup-form__item_el_name");
 const jobInput = document.querySelector(".popup-form__item_el_job");
 const nameValue = document.querySelector(".profile__title");
@@ -33,14 +33,14 @@ formElementEdit.addEventListener("submit", handleProfileFormSubmit);
 
 //Добавление нового элемента
 
-const popupElementAdd = document.querySelector(".popup__add");
+const popupElementAdd = document.querySelector(".popup_add");
 const addButton = document.querySelector(".profile__add-button");
-const closeButtonAdd = document.querySelector(".close-button__add");
+const closeButtonAdd = document.querySelector(".close-button_add");
 const delButton = document.querySelector(".element__del-button");
 const placeInput = document.querySelector(".popup-form__item_el_place");
 const urlInput = document.querySelector(".popup-form__item_el_url");
 const elementsConteiner = document.querySelector(".elements__list");
-const formElementAdd = document.querySelector(".popup-form__add");
+const formElementAdd = document.querySelector(".popup-form_add");
 
 function openPopupAdd() {
   popupElementAdd.classList.add("popup_opened");
@@ -147,8 +147,8 @@ function onDocumentKeyUp(event) {
 }
 
 //POPUP с картинкой
-const popupElementPic = document.querySelector(".popup__zoom");
-const closeButtonPic = document.querySelector(".close-button__zoom");
+const popupElementPic = document.querySelector(".popup_zoom");
+const closeButtonPic = document.querySelector(".close-button_zoom");
 const popupPic = document.querySelector(".popup__pic");
 const popupText = document.querySelector(".popup__text");
 

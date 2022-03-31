@@ -9,6 +9,7 @@
 @import url(../blocks/hover/hover.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup-form/popup-form.css);
+@import url(../blocks/close-button/close-button.css);
 
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
@@ -40,3 +41,11 @@
 @import url(../blocks/popup-form/__item/_el/popup-form__item_el_name.css);
 @import url(../blocks/popup-form/__item/_el/popup-form__item_el_place.css);
 @import url(../blocks/popup-form/__item/_el/popup-form__item_el_url.css);
+@import url(../blocks/popup/_add/popup_add.css);
+@import url(../blocks/popup/_edit/popup_edit.css);
+@import url(../blocks/popup/_zoom/popup_zoom.css);
+@import url(../blocks/close-button/_add/close-button_add.css);
+@import url(../blocks/close-button/_edit/close-button_edit.css);
+@import url(../blocks/close-button/_zoom/close-button_zoom.css);
+@import url(../blocks/popup-form/_add/popup-form_add.css);
+@import url(../blocks/popup-form/_edit/popup-form_edit.css);
