@@ -1,6 +1,8 @@
 .popup__close-button {
     width: 32px;
     height: 32px;
+    margin: 0;
+    padding: 0;
     position: absolute;
     right: -40px;
     top: -40px;
@@ -16,7 +18,7 @@
     height: 35px;
     border: 2.5px solid #fff;
     top: -4px;
-    left: 13px;
+    left: 14px;
     background-color: #fff;
     transform: rotate(45deg);
 }
@@ -27,7 +29,7 @@
     height: 35px;
     border: 2.5px solid #fff;
     top: -4px;
-    left: 13px;
+    left: 14px;
     background-color: #fff;
     transform: rotate(-45deg);
 }

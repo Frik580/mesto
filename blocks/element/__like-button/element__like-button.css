@@ -8,7 +8,6 @@
     background-image: url(../../../images/LikeButton.svg);
     background-size: 22px 19px;
     background-repeat: no-repeat;
-    background-position: center;
-    margin-left: 20px;
-    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
 }
