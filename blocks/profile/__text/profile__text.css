@@ -5,8 +5,6 @@
     line-height: 1.22;
     font-weight: 400;
     font-style: normal;
-    /* min-width: 0;
-    word-wrap: break-word; */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

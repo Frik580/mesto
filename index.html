@@ -41,27 +41,31 @@
           class="popup__close-button popup__close-button_edit hover"
           type="button"
         ></button>
-        <form class="popup-form popup-form_edit" name="profile-form">
+        <form class="popup-form popup-form_edit" name="user" novalidate>
           <h3 class="popup-form__title">Редактировать профиль</h3>
-          <fieldset class="popup-form__input">
-            <input
-              type="text"
-              class="popup-form__item popup-form__item_el_name"
-              name="name"
-              placeholder="Введите имя"
-              required
-            />
-            <input
-              type="text"
-              class="popup-form__item popup-form__item_el_job"
-              name="job"
-              placeholder="Укажите профессию"
-              required
-            />
-          </fieldset>
-          <button class="popup-form__button hover" type="submit">
-            Сохранить
-          </button>
+          <input
+            type="text"
+            id="user-name"
+            name="username"
+            class="popup-form__item popup-form__item_el_name"
+            minlength="2"
+            maxlength="40"
+            placeholder="Введите имя"
+            required
+          />
+          <span id="user-name-error" class="error"></span>
+          <input
+            type="text"
+            id="about"
+            name="about"
+            class="popup-form__item popup-form__item_el_job"
+            minlength="2"
+            maxlength="200"
+            placeholder="О себе"
+            required
+          />
+          <span id="about-error" class="error"></span>
+          <button class="popup-form__button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
@@ -72,27 +76,30 @@
           class="popup__close-button popup__close-button_add hover"
           type="button"
         ></button>
-        <form class="popup-form popup-form_add" name="elements-form">
+        <form class="popup-form popup-form_add" name="place" novalidate>
           <h3 class="popup-form__title">Новое место</h3>
-          <fieldset class="popup-form__input">
-            <input
-              type="text"
-              class="popup-form__item popup-form__item_el_place"
-              name="place"
-              placeholder="Название"
-              required
-            />
-            <input
-              type="url"
-              class="popup-form__item popup-form__item_el_url"
-              name="url"
-              placeholder="Ссылка на картинку"
-              required
-            />
-          </fieldset>
-          <button class="popup-form__button hover" type="submit">
-            Создать
-          </button>
+          <input
+            type="text"
+            id="name-card"
+            name="namecard"
+            class="popup-form__item popup-form__item_el_place"
+            minlength="2"
+            maxlength="30"
+            placeholder="Название"
+            required
+          />
+          <span id="name-card-error" class="error"></span>
+          <input
+            type="url"
+            id="link"
+            name="link"
+            class="popup-form__item popup-form__item_el_url"
+            minlength="2"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <span id="link-error" class="error"></span>
+          <button class="popup-form__button" type="submit">Создать</button>
         </form>
       </div>
     </div>
@@ -120,5 +127,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
