@@ -1,3 +1,9 @@
 .popup-form__item_el_url {
-    
+    margin-top: 17px;
+}
+
+@media (max-width: 500px) {
+    .popup-form__item_el_url {
+        margin-top: 21px;
+    }
 }

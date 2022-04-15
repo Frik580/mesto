@@ -20,3 +20,15 @@
         min-height: 35px;
     }
 }
+
+/* .popup-form__item:invalid {
+    border-bottom: 1px solid #FF0000;
+}
+
+.popup-form__item:hover {
+    border-bottom-color: #000;
+  }
+
+  .popup-form__item:focus {
+    border-bottom-color: #007DFF;
+  } */
