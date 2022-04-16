@@ -1,15 +1,5 @@
 //Валидаци форм
 
-const objList = {
-  formSelector: ".popup-form",
-  inputSelector: ".popup-form__item",
-  submitButtonSelector: ".popup-form__button",
-  inactiveButtonClass: "popup-form__button_disabled",
-  activeButtonClass: "popup-form__button_hover",
-  inputErrorClass: "popup-form__item_type_error",
-  errorClass: "popup-form__item_error_active",
-};
-
 const showInputError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(obj.inputErrorClass);
@@ -93,4 +83,4 @@ const enableValidation = (obj) => {
 };
 
 // Вызовем функцию
-enableValidation(objList);
+enableValidation(obj);
