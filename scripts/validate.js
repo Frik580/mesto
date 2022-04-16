@@ -1,5 +1,15 @@
 //Валидаци форм
 
+const objList = {
+  formSelector: ".popup-form",
+  inputSelector: ".popup-form__item",
+  submitButtonSelector: ".popup-form__button",
+  inactiveButtonClass: "popup-form__button_disabled",
+  activeButtonClass: "popup-form__button_hover",
+  inputErrorClass: "popup-form__item_type_error",
+  errorClass: "popup-form__item_error_active",
+};
+
 const showInputError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(obj.inputErrorClass);
@@ -16,7 +26,12 @@ const hideInputError = (formElement, inputElement, obj) => {
 
 const checkInputValidity = (formElement, inputElement, obj) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      obj
+    );
   } else {
     hideInputError(formElement, inputElement, obj);
   }
@@ -24,7 +39,6 @@ const checkInputValidity = (formElement, inputElement, obj) => {
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
-
     return !inputElement.validity.valid;
   });
 };
@@ -49,21 +63,15 @@ const toggleButtonState = (inputList, buttonElement, obj) => {
       obj.activeButtonClass
     );
   } else {
-    enableButton(
-      buttonElement,
-      obj.inactiveButtonClass,
-      obj.activeButtonClass
-    );
+    enableButton(buttonElement, obj.inactiveButtonClass, obj.activeButtonClass);
   }
 };
 
 const setEventListeners = (formElement, obj) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(obj.inputSelector)
-  );
+  const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement, obj);
+  // toggleButtonState(inputList, buttonElement, obj);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
@@ -84,13 +92,5 @@ const enableValidation = (obj) => {
   });
 };
 
-// // Вызовем функцию
-// enableValidation({
-//   formSelector: '.popup-form',
-//   inputSelector: '.popup-form__item',
-//   submitButtonSelector: '.popup-form__button',
-//   inactiveButtonClass: 'popup-form__button_disabled',
-//   activeButtonClass: 'popup-form__button_hover',
-//   inputErrorClass: 'popup-form__item_type_error',
-//   errorClass: 'popup-form__item_error_active'
-// });
+// Вызовем функцию
+enableValidation(objList);
