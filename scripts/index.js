@@ -1,4 +1,3 @@
-
 const obj = {
   formSelector: ".popup-form",
   inputSelector: ".popup-form__item",
@@ -56,6 +55,14 @@ function openPopupToEditProfile() {
   jobInput.value = jobValue.textContent;
   const buttonElement = formEditProfile.elements.button;
   enableButton(buttonElement, obj.inactiveButtonClass, obj.activeButtonClass);
+
+  const inputList = Array.from(
+    formEditProfile.querySelectorAll(obj.inputSelector)
+  );
+  inputList.forEach((inputElement) => {
+    hideInputError(formEditProfile, inputElement, obj);
+  });
+
   openPopup(popupEditProfile);
 }
 
@@ -112,6 +119,12 @@ function openPopupToAddCard() {
   urlInput.value = "";
   const buttonElement = formAddCard.elements.button;
   disableButton(buttonElement, obj.inactiveButtonClass, obj.activeButtonClass);
+
+  const inputList = Array.from(formAddCard.querySelectorAll(obj.inputSelector));
+  inputList.forEach((inputElement) => {
+    hideInputError(formAddCard, inputElement, obj);
+  });
+
   openPopup(popupAddCard);
 }
 
