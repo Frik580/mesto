@@ -8,13 +8,15 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    margin-bottom: 36px;
+    margin-bottom: 19px; 
+    /* 36 */
 }
 
 @media (max-width: 500px) {
     .popup-form__title {
         font-size: 18px;
         line-height: 1.22;
-        margin-bottom: 67px;
+        margin-bottom: 46px;
+        /* 67 */
     }
 }

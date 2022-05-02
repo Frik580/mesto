@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const obj = {
   formSelector: ".popup-form",
   inputSelector: ".popup-form__item",
@@ -8,9 +11,51 @@ const obj = {
   errorClass: "popup-form__item_error_active",
 };
 
-//Общие фунции
+const initialCards = [
+  {
+    name: "Сочи",
+    link: "https://avatars.mds.yandex.net/get-altay/3966989/2a00000176ab7e413b797e1b7daba191dcbe/XXL",
+  },
+  {
+    name: "Грузия",
+    link: "https://extraguide.ru/images/sp/b56a4c3ee5142c1254fabedf606ad3fd8f841230.jpg",
+  },
+  {
+    name: "Черногория",
+    link: "https://www.montenegro.nl/wp-content/uploads/sites/59/2016/03/1000-x-1000-meer-bootjes.jpg",
+  },
+  {
+    name: "Бали",
+    link: "https://miro.medium.com/max/1200/0*cHSpi5p1Q59mXFR4",
+  },
+  {
+    name: "Анси",
+    link: "https://i.pinimg.com/originals/61/df/f9/61dff98a81fc4f4e6ce41c3585fe7c31.jpg",
+  },
+  {
+    name: "Шамони",
+    link: "https://mykaleidoscope.ru/uploads/posts/2021-10/1634637021_106-mykaleidoscope-ru-p-shamoni-plate-krasivo-125.jpg",
+  },
+];
 
-function openPopup(popup) {
+//Общие фунции
+export const hideInputError = (formElement, inputElement, obj) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(obj.inputErrorClass);
+  errorElement.classList.remove(obj.errorClass);
+  errorElement.textContent = "";
+};
+
+export function openPopup(popup) {
+  // Сброс ошибок валидации
+  if (popup !== popupZoomImage) {
+    const form = popup.querySelector(obj.formSelector);
+    const inputList = Array.from(form.querySelectorAll(obj.inputSelector));
+    inputList.forEach((inputElement) => {
+      hideInputError(form, inputElement, obj);
+    });
+  }
+
   popup.classList.add("popup_opened");
   document.addEventListener("keyup", closeOnESC);
   document.addEventListener("click", onOverlayClick);
@@ -53,16 +98,8 @@ const jobValue = document.querySelector(".profile__text");
 function openPopupToEditProfile() {
   nameInput.value = nameValue.textContent;
   jobInput.value = jobValue.textContent;
-  const buttonElement = formEditProfile.elements.button;
-  enableButton(buttonElement, obj.inactiveButtonClass, obj.activeButtonClass);
-
-  const inputList = Array.from(
-    formEditProfile.querySelectorAll(obj.inputSelector)
-  );
-  inputList.forEach((inputElement) => {
-    hideInputError(formEditProfile, inputElement, obj);
-  });
-
+  const validator = new FormValidator(obj, ".popup-form_edit");
+  validator.enableValidation();
   openPopup(popupEditProfile);
 }
 
@@ -86,45 +123,16 @@ formEditProfile.addEventListener("submit", handleProfileFormSubmit);
 const popupAddCard = document.querySelector(".popup_add");
 const buttonAddCard = document.querySelector(".profile__add-button");
 const buttonCloseAddCard = document.querySelector(".popup__close-button_add");
-const cardsConteiner = document.querySelector(".elements__list");
+const cardsContainer = document.querySelector(".elements__list");
 const formAddCard = document.forms.place;
 const placeInput = formAddCard.elements.namecard;
 const urlInput = formAddCard.elements.link;
-const template = document.querySelector("#element-template");
-
-const createCard = (items) => {
-  const card = template.content.querySelector(".element").cloneNode(true);
-  const image = card.querySelector(".element__pic");
-  image.src = items.link;
-  image.alt = items.name;
-  card.querySelector(".element__title").textContent = items.name;
-  card
-    .querySelector(".element__like-button")
-    .addEventListener("click", activationLikeButton);
-  card.querySelector(".element__del-button").addEventListener("click", () => {
-    card.remove();
-  });
-  image.addEventListener("click", () => {
-    popupImage.src = items.link;
-    popupImage.alt = items.link;
-    popupText.textContent = items.name;
-    openPopup(popupZoomImage);
-  });
-
-  return card;
-};
 
 function openPopupToAddCard() {
   placeInput.value = "";
   urlInput.value = "";
-  const buttonElement = formAddCard.elements.button;
-  disableButton(buttonElement, obj.inactiveButtonClass, obj.activeButtonClass);
-
-  const inputList = Array.from(formAddCard.querySelectorAll(obj.inputSelector));
-  inputList.forEach((inputElement) => {
-    hideInputError(formAddCard, inputElement, obj);
-  });
-
+  const validator = new FormValidator(obj, ".popup-form_add");
+  validator.enableValidation();
   openPopup(popupAddCard);
 }
 
@@ -135,37 +143,33 @@ function closePopupToAddCard() {
 const handleCardFormSubmit = (event) => {
   event.preventDefault();
   const items = {};
-  items.link = urlInput.value;
   items.name = placeInput.value;
+  items.link = urlInput.value;
   renderCard(items);
   closePopupToAddCard();
 };
 
-const activationLikeButton = (event) => {
-  event.target.classList.toggle("element__like-button_active");
-};
-
 const renderCard = (items) => {
-  cardsConteiner.prepend(createCard(items));
+  const card = new Card(items);
+  cardsContainer.prepend(card.getCard());
 };
 
 const cards = initialCards.map((items) => {
-  return createCard(items);
+  const card = new Card(items);
+  return card.getCard();
 });
 
 buttonAddCard.addEventListener("click", openPopupToAddCard);
 buttonCloseAddCard.addEventListener("click", closePopupToAddCard);
-cardsConteiner.append(...cards);
+cardsContainer.append(...cards);
 formAddCard.addEventListener("submit", handleCardFormSubmit);
 
 //POPUP с картинкой
 
-const popupZoomImage = document.querySelector(".popup_zoom");
+export const popupZoomImage = document.querySelector(".popup_zoom");
 const buttonCloseZoomImage = document.querySelector(
   ".popup__close-button_zoom"
 );
-const popupImage = document.querySelector(".popup__pic");
-const popupText = document.querySelector(".popup__text");
 
 function closePopupToZoomImage() {
   closePopup(popupZoomImage);

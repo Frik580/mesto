@@ -13,22 +13,25 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin-top: 17px;
 }
 
 @media (max-width: 500px) {
     .popup-form__item {
         min-height: 35px;
+        margin-top: 21px;
     }
 }
 
 /* .popup-form__item:invalid {
     border-bottom: 1px solid #FF0000;
-}
+} */
 
-.popup-form__item:hover {
+/* .popup-form__item:hover {
     border-bottom-color: #000;
-  }
+  } */
 
   .popup-form__item:focus {
-    border-bottom-color: #007DFF;
-  } */
+    outline: none;
+    border: 1px solid #007DFF;
+  }
