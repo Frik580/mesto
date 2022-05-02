@@ -19,3 +19,11 @@
         height: 46px;
     }
 }
+
+.popup-form__button:enabled {
+    transition: opacity .3s ease-in-out;
+}
+
+.popup-form__button:enabled:hover {
+    opacity: 0.8;
+}

@@ -47,6 +47,5 @@
 @import url(../blocks/popup/__close-button/_zoom/popup__close-button_zoom.css);
 @import url(../blocks/popup/_dark/popup_dark.css);
 @import url(../blocks/popup-form/__button/_disabled/popup-form__button_disabled.css);
-@import url(../blocks/popup-form/__button/_hover/popup-form__button_hover.css);
 @import url(../blocks/popup-form/__item/_type/popup-form__item_type_error.css);
 @import url(../blocks/popup-form/__item/_error/popup-form__item_error_active.css);

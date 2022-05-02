@@ -1,4 +1,4 @@
-import { openPopup, popupZoomImage } from './index.js';
+import { openPopup, popupZoomImage } from "./index.js";
 
 class Card {
   _template = document.querySelector("#element-template").content;
@@ -24,20 +24,17 @@ class Card {
   };
 
   _handleDelete = () => {
-    if (this._card) {
-      this._card.remove();
-    }
+    this._card.remove();
+    this._card = null;
   };
 
   _activationLike = (event) => {
-    if (this._card) {
-      event.target.classList.toggle("element__like-button_active");
-    }
+    event.target.classList.toggle("element__like-button_active");
   };
 
   _activationZoom = () => {
     this._popupImage.src = this._data.link;
-    this._popupImage.alt = this._data.link;
+    this._popupImage.alt = this._data.name;
     this._popupText.textContent = this._data.name;
     openPopup(popupZoomImage);
   };
