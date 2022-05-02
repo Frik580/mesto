@@ -1,3 +1,6 @@
 .error {
-    
+    position: absolute;
+    left: 0px;
+    top: 57px;
+    z-index: 1;
 }
