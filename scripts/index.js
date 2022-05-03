@@ -110,8 +110,7 @@ const handleCardFormSubmit = (event) => {
   item.link = urlInput.value;
   addCard(renderCard(item));
   closePopupToAddCard();
-  const button = formAddCard.elements.button;
-  validatorAddForm.disableButton(button, obj.inactiveButtonClass);
+  validatorAddForm.disableButton();
 };
 
 const renderCard = (item) => {
@@ -123,8 +122,8 @@ const addCard = (card) => {
   cardsContainer.prepend(card);
 };
 
-const cards = initialCards.map((items) => {
-  return renderCard(items);
+const cards = initialCards.map((item) => {
+  return renderCard(item);
 });
 
 cardsContainer.append(...cards);
