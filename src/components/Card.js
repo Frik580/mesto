@@ -1,11 +1,9 @@
-import { openPopup, popupZoomImage } from "./index.js";
 
 class Card {
-  _template = document.querySelector("#element-template").content;
-  _popupImage = document.querySelector(".popup__pic");
-  _popupText = document.querySelector(".popup__text");
-  constructor(data) {
+  constructor({ data, handleCardClick }) {
     this._data = data;
+    this._handleCardClick = handleCardClick;
+    this._template = document.querySelector("#element-template").content;
   }
 
   _createCard = () => {
@@ -20,7 +18,9 @@ class Card {
     this._card
       .querySelector(".element__like-button")
       .addEventListener("click", this._activationLike);
-    this._image.addEventListener("click", this._activationZoom);
+    this._image.addEventListener("click", () => {
+      this._handleCardClick();
+    });
   };
 
   _handleDelete = () => {
@@ -30,13 +30,6 @@ class Card {
 
   _activationLike = (event) => {
     event.target.classList.toggle("element__like-button_active");
-  };
-
-  _activationZoom = () => {
-    this._popupImage.src = this._data.link;
-    this._popupImage.alt = this._data.name;
-    this._popupText.textContent = this._data.name;
-    openPopup(popupZoomImage);
   };
 
   getCard = () => {

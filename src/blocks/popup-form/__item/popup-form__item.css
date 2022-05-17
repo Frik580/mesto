@@ -23,14 +23,6 @@
     }
 }
 
-/* .popup-form__item:invalid {
-    border-bottom: 1px solid #FF0000;
-} */
-
-/* .popup-form__item:hover {
-    border-bottom-color: #000;
-  } */
-
   .popup-form__item:focus {
     outline: none;
     border: 1px solid #007DFF;

@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: "Сочи",
     link: "https://avatars.mds.yandex.net/get-altay/3966989/2a00000176ab7e413b797e1b7daba191dcbe/XXL",
@@ -25,4 +25,20 @@ const initialCards = [
   },
 ];
 
-export default initialCards;
+export const obj = {
+  formSelector: ".popup-form",
+  inputSelector: ".popup-form__item",
+  submitButtonSelector: ".popup-form__button",
+  inactiveButtonClass: "popup-form__button_disabled",
+  inputErrorClass: "popup-form__item_type_error",
+  errorClass: "popup-form__item_error_active",
+};
+
+// Редактирование профиля
+export const buttonEditProfile = document.querySelector(".profile__edit-button");
+export const nameValue = document.querySelector(".profile__title");
+export const jobValue = document.querySelector(".profile__text");
+
+// Действия с карточками
+export const cardListSelector = ".elements__list";
+export const buttonAddCard = document.querySelector(".profile__add-button");
