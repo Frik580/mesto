@@ -13,6 +13,5 @@
     align-items: center;
     visibility: hidden;
     opacity: 0;
-    transition: .5s;
-    /* cursor: pointer; */
+    transition: opacity .5s;
 }
