@@ -33,7 +33,7 @@ const validatorAddForm = new FormValidator(obj, ".popup-form_add");
 const popupZoomImage = new PopupWithImage(".popup_zoom");
 popupZoomImage.setEventListeners();
 
-const info = new UserInfo({ selectorName: "username", selectorInfo: "about" });
+const info = new UserInfo({ selectorName: ".profile__title", selectorInfo: ".profile__text" });
 
 const defaultCardList = new Section(
   {
