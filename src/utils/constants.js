@@ -36,9 +36,8 @@ export const obj = {
 
 // Редактирование профиля
 export const buttonEditProfile = document.querySelector(".profile__edit-button");
-export const nameValue = document.querySelector(".profile__title");
-export const jobValue = document.querySelector(".profile__text");
 
 // Действия с карточками
 export const cardListSelector = ".elements__list";
+export const templateSelector = "#element-template";
 export const buttonAddCard = document.querySelector(".profile__add-button");

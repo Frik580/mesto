@@ -1,4 +1,3 @@
-
 class Section {
   constructor({ items, renderer }, containerSelector) {
     this._renderedItems = items;
@@ -8,13 +7,14 @@ class Section {
 
   renderItem = () => {
     this._renderedItems.map((item) => {
-      this._renderer(item);
+      this.addItem(item);
     });
-  }
+  };
 
-  addItem = (element) => {
-    this._container.prepend(element);
-  }
+  addItem = (item) => {
+    const card = this._renderer(item);
+    this._container.prepend(card);
+  };
 }
 
 export default Section;
