@@ -1,22 +1,21 @@
 class UserInfo {
-  constructor({ username, about }) {
-    this._username = username;
-    this._about = about;
+  constructor({ selectorName, selectorInfo }) {
+    this._selectorName = selectorName;
+    this._selectorInfo = selectorInfo;
     this._nameValue = document.querySelector(".profile__title");
     this._jobValue = document.querySelector(".profile__text");
-    this._nameInput = document.forms.user.elements.username;
-    this._jobInput = document.forms.user.elements.about;
   }
 
   getUserInfo = () => {
-    this._nameInput.value = this._username;
-    this._jobInput.value = this._about;
+    this._data = {};
+    this._data[this._selectorName] = this._nameValue.textContent;
+    this._data[this._selectorInfo] = this._jobValue.textContent;
+    return this._data;
   };
 
-  setUserInfo = () => {
-    this._nameValue.textContent = this._username;
-    this._jobValue.textContent = this._about;
-
+  setUserInfo = (data) => {
+    this._nameValue.textContent = data[this._selectorName];
+    this._jobValue.textContent = data[this._selectorInfo];
   };
 }
 
