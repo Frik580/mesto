@@ -7,7 +7,8 @@ class Section {
 
   renderItem = () => {
     this._renderedItems.map((item) => {
-      this.addItem(item);
+      const card = this._renderer(item);
+      this._container.append(card);
     });
   };
 
