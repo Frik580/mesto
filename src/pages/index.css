@@ -9,10 +9,13 @@
 @import url(../blocks/hover/hover.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup-form/popup-form.css);
+@import url(../blocks/popup-submit/popup-submit.css);
 @import url(../blocks/error/error.css);
 
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__avatar-box/profile__avatar-box.css);
+@import url(../blocks/profile/__avatar-ikon/profile__avatar-ikon.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__text/profile__text.css);
@@ -22,12 +25,16 @@
 @import url(../blocks/element/__info/element__info.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
+@import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like-value/element__like-value.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/__conteiner/popup__conteiner.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup-form/__title/popup-form__title.css);
 @import url(../blocks/popup-form/__item/popup-form__item.css);
 @import url(../blocks/popup-form/__button/popup-form__button.css);
+@import url(../blocks/popup-submit/__title/popup-submit__title.css);
+@import url(../blocks/popup-submit/__button/popup-submit__button.css);
 @import url(../blocks/elements/__list/elements__list.css);
 @import url(../blocks/element/__del-button/element__del-button.css);
 @import url(../blocks/popup/__zoom-conteiner/popup__zoom-conteiner.css);
@@ -40,8 +47,11 @@
 @import url(../blocks/popup/_add/popup_add.css);
 @import url(../blocks/popup/_edit/popup_edit.css);
 @import url(../blocks/popup/_zoom/popup_zoom.css);
+@import url(../blocks/popup/__conteiner/_size/popup__conteiner_size_medium.css);
+@import url(../blocks/popup/__conteiner/_size/popup__conteiner_size_small.css);
 @import url(../blocks/popup-form/_add/popup-form_add.css);
 @import url(../blocks/popup-form/_edit/popup-form_edit.css);
+@import url(../blocks/popup-form/_avatar/popup-form_avatar.css);
 @import url(../blocks/popup/_dark/popup_dark.css);
 @import url(../blocks/popup-form/__button/_disabled/popup-form__button_disabled.css);
 @import url(../blocks/popup-form/__item/_type/popup-form__item_type_error.css);

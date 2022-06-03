@@ -8,13 +8,13 @@ class UserInfo {
 
   getUserInfo = () => {
     this._data = {};
-    this._data.username = this._nameValue.textContent;
+    this._data.name = this._nameValue.textContent;
     this._data.about = this._jobValue.textContent;
     return this._data;
   };
 
   setUserInfo = (data) => {
-    this._nameValue.textContent = data.username;
+    this._nameValue.textContent = data.name;
     this._jobValue.textContent = data.about;
   };
 }

@@ -12,14 +12,13 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img
-          src="<%=require('./images/image.png')%>"
-          class="profile__avatar"
-          alt="Фотография в профайле"
-        />
+        <div class="profile__avatar-box">
+          <img src="" class="profile__avatar" alt="Фотография в профайле" />
+          <div class="profile__avatar-ikon"></div>
+        </div>
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <p class="profile__text">Исследователь океана</p>
+          <h1 class="profile__title"></h1>
+          <p class="profile__text"></p>
           <button class="profile__edit-button hover" type="button"></button>
         </div>
         <button class="profile__add-button hover" type="button"></button>
@@ -43,7 +42,7 @@
             <input
               type="text"
               id="user-name"
-              name="username"
+              name="name"
               class="popup-form__item"
               minlength="2"
               maxlength="40"
@@ -109,6 +108,42 @@
       </div>
     </div>
 
+    <div class="popup popup_submit">
+      <div class="popup__conteiner popup__conteiner_size_small">
+        <button class="popup__close-button hover" type="button"></button>
+        <div class="popup-submit">
+          <h3 class="popup-submit__title">Вы уверены?</h3>
+          <button class="popup-submit__button" type="submit" name="button">
+            Да
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup popup_avatar">
+      <div class="popup__conteiner popup__conteiner_size_medium">
+        <button class="popup__close-button hover" type="button"></button>
+        <form class="popup-form popup-form_avatar" name="avatar" novalidate>
+          <h3 class="popup-form__title">Обновить аватар</h3>
+          <fieldset class="popup-form__conteiner">
+            <input
+              type="url"
+              id="link"
+              name="avatar"
+              class="popup-form__item"
+              minlength="2"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span id="link-error" class="error"></span>
+          </fieldset>
+          <button class="popup-form__button" type="submit" name="button">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div class="popup popup_zoom popup_dark">
       <div class="popup__zoom-conteiner">
         <button class="popup__close-button hover" type="button"></button>
@@ -123,10 +158,12 @@
         <button class="element__del-button hover" type="button"></button>
         <div class="element__info">
           <h2 class="element__title"></h2>
-          <button class="element__like-button hover" type="button"></button>
+          <div class="element__like">
+            <button class="element__like-button hover" type="button"></button>
+            <p class="element__like-value"></p>
+          </div>
         </div>
       </li>
     </template>
-
   </body>
 </html>
