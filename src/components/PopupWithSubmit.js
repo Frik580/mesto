@@ -5,6 +5,7 @@ class PopupWithSubmit extends Popup {
     super(selector);
     this._handleSubmit = handleSubmit;
     this._button = this._popup.querySelector(".popup-submit__button");
+    this._textButton = this._button.textContent;
   }
 
   open = (element, id) => {
@@ -13,12 +14,25 @@ class PopupWithSubmit extends Popup {
     super.open();
   };
 
+  close = () => {
+    super.close();
+    this._renderLoading(false);
+  };
+
+  _renderLoading = (isLoading) => {
+    if (isLoading) {
+      this._button.textContent = "Удаление...";
+    } else {
+      this._button.textContent = this._textButton;
+    }
+  };
+
   setEventListeners = () => {
     super.setEventListeners();
     this._button.addEventListener("click", (evt) => {
       evt.preventDefault();
+      this._renderLoading(true);
       this._handleSubmit(this._element, this._id);
-      this.close();
     });
   };
 }

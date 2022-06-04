@@ -1,14 +1,21 @@
 class Card {
   constructor(
-    { data, handleCardClick, userID, handleDeleteClick, addLike, deleteLike },
+    {
+      data,
+      userID,
+      handleCardClick,
+      handleDeleteClick,
+      handleAddLike,
+      handleDeleteLike,
+    },
     templateSelector
   ) {
     this._data = data;
-    this._handleCardClick = handleCardClick;
     this._userID = userID;
+    this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
-    this._addLike = addLike;
-    this._deleteLike = deleteLike;
+    this._handleAddLike = handleAddLike;
+    this._handleDeleteLike = handleDeleteLike;
     this._likesArray = this._data.likes;
     this._template = document.querySelector(templateSelector).content;
   }
@@ -41,30 +48,26 @@ class Card {
     });
     this._like.addEventListener("click", (event) => {
       if (event.target.classList.contains("element__like-button_active")) {
-        this._handleDeleteLike();
+        this._handleDeleteLike(this._data);
       } else {
-        this._handleAddLike();
+        this._handleAddLike(this._data);
       }
     });
     this._image.addEventListener("click", this._handleCardClick);
   };
 
-  _handleDeleteLike() {
-    this._deleteLike(this._data).then((data) => {
-      this._like.classList.remove("element__like-button_active");
-      this._likesArray = data.likes;
-      this._card.querySelector(".element__like-value").textContent =
+  deleteLike = (data) => {
+    this._like.classList.remove("element__like-button_active");
+    this._likesArray = data.likes;
+    this._card.querySelector(".element__like-value").textContent =
       this._likesArray.length;
-    });
   };
 
-  _handleAddLike() {
-    this._addLike(this._data).then((data) => {
-      this._like.classList.add("element__like-button_active");
-      this._likesArray = data.likes;
-      this._card.querySelector(".element__like-value").textContent =
+  addLike = (data) => {
+    this._like.classList.add("element__like-button_active");
+    this._likesArray = data.likes;
+    this._card.querySelector(".element__like-value").textContent =
       this._likesArray.length;
-    });
   };
 
   getCard = () => {

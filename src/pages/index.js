@@ -28,157 +28,175 @@ const api = new Api(config);
 
 const promises = [api.getUserInfo(), api.getInitialCards()];
 
-Promise.all(promises).then((results) => {
-  const data = results[0];
-  avatar.src = data.avatar;
-  const userID = data._id;
-  const initialCards = results[1];
+Promise.all(promises)
+  .then((results) => {
+    const data = results[0];
+    const userID = data._id;
+    const initialCards = results[1];
 
-  const defaultCardList = new Section(
-    {
-      items: initialCards,
-      renderer: (item) => createCard(item),
-    },
-    cardListSelector
-  );
-  defaultCardList.renderItem();
-
-  const popupZoomImage = new PopupWithImage(".popup_zoom");
-  popupZoomImage.setEventListeners();
-
-  const popupDeleteCard = new PopupWithSubmit({
-    selector: ".popup_submit",
-    handleSubmit: (element, id) => deleteCard(element, id),
-  });
-  popupDeleteCard.setEventListeners();
-
-  function createCard(item) {
-    const card = new Card(
+    const defaultCardList = new Section(
       {
-        data: item,
-        handleCardClick: () => popupZoomImage.open(item),
-        userID,
-        handleDeleteClick: (element, id) => {
-          popupDeleteCard.open(element, id);
-        },
-        addLike: (data) => {
-          return api.addLike(data);
-        },
-        deleteLike: (data) => {
-          return api.deleteLike(data);
-        },
+        items: initialCards,
+        renderer: (item) => createCard(item),
       },
-      templateSelector
+      cardListSelector
     );
-    return card.getCard();
-  }
+    defaultCardList.renderItems(initialCards);
 
-  const deleteCard = (element, id) => {
-    return api
-      .deleteCard(id)
-      .then(() => {
-        element.remove();
-        element = null;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    const popupZoomImage = new PopupWithImage(".popup_zoom");
+    popupZoomImage.setEventListeners();
 
-  const postCard = (data) => {
-    return api
-      .postCard(data)
-      .then((obj) => {
-        defaultCardList.addItem(obj);
-        popupAddCard.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    const popupDeleteCard = new PopupWithSubmit({
+      selector: ".popup_submit",
+      handleSubmit: (element, id) => deleteCard(element, id),
+    });
+    popupDeleteCard.setEventListeners();
 
-  // 1
-  const popupAddCard = new PopupWithForm({
-    selector: ".popup_add",
-    handleFormSubmit: (data) => {
-      const card = {};
-      card.name = data.namecard;
-      card.link = data.link;
-      postCard(card);
-    },
+    function createCard(item) {
+      const card = new Card(
+        {
+          data: item,
+          handleCardClick: () => popupZoomImage.open(item),
+          userID,
+          handleDeleteClick: (element, id) => {
+            popupDeleteCard.open(element, id);
+          },
+          handleAddLike: (data) => {
+            return api
+              .addLike(data)
+              .then((data) => {
+                card.addLike(data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          },
+          handleDeleteLike: (data) => {
+            return api
+              .deleteLike(data)
+              .then((data) => {
+                card.deleteLike(data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          },
+        },
+        templateSelector
+      );
+      return card.getCard();
+    }
+
+    const deleteCard = (element, id) => {
+      return api
+        .deleteCard(id)
+        .then(() => {
+          element.remove();
+          element = null;
+          popupDeleteCard.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    const postCard = (data) => {
+      return api
+        .postCard(data)
+        .then((obj) => {
+          defaultCardList.addItem(obj);
+          popupAddCard.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    // 1
+    const popupAddCard = new PopupWithForm({
+      selector: ".popup_add",
+      handleFormSubmit: (data) => {
+        const card = {};
+        card.name = data.namecard;
+        card.link = data.link;
+        postCard(card);
+      },
+    });
+    popupAddCard.setEventListeners();
+
+    function openPopupToAddCard() {
+      validatorAddForm.resetErrors();
+      validatorAddForm.disableButton();
+      popupAddCard.open();
+    }
+
+    buttonAddCard.addEventListener("click", openPopupToAddCard);
+
+    // Управление профилем
+    const info = new UserInfo({
+      selectorName: ".profile__title",
+      selectorInfo: ".profile__text",
+      selectorAvatar: ".profile__avatar",
+    });
+
+    info.setUserInfo(data);
+
+    const editUserInfo = (data) => {
+      return api
+        .editUserInfo(data)
+        .then((obj) => {
+          info.setUserInfo(obj);
+          popupEditProfile.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    // 2
+    const popupEditProfile = new PopupWithForm({
+      selector: ".popup_edit",
+      handleFormSubmit: editUserInfo,
+    });
+    popupEditProfile.setEventListeners();
+
+    function openPopupToEditProfile() {
+      popupEditProfile.setInputValues(info.getUserInfo());
+      validatorEditForm.resetErrors();
+      validatorEditForm.enableButton();
+      popupEditProfile.open();
+    }
+
+    buttonEditProfile.addEventListener("click", openPopupToEditProfile);
+
+    // Аватар
+    const editAvatar = (data) => {
+      return api
+        .editAvatar(data)
+        .then((obj) => {
+          avatar.src = obj.avatar;
+          popupEditAvatar.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    // 3
+    const popupEditAvatar = new PopupWithForm({
+      selector: ".popup_avatar",
+      handleFormSubmit: editAvatar,
+    });
+    popupEditAvatar.setEventListeners();
+
+    function openPopupToEditAvatar() {
+      validatorAvatarForm.resetErrors();
+      validatorAvatarForm.disableButton();
+      popupEditAvatar.open();
+    }
+
+    avatar.addEventListener("click", openPopupToEditAvatar);
+  })
+  .catch((err) => {
+    console.log(err);
   });
-  popupAddCard.setEventListeners();
-
-  function openPopupToAddCard() {
-    validatorAddForm.resetErrors();
-    validatorAddForm.disableButton();
-    popupAddCard.open();
-  }
-
-  buttonAddCard.addEventListener("click", openPopupToAddCard);
-
-  // Управление профилем
-  const info = new UserInfo({
-    selectorName: ".profile__title",
-    selectorInfo: ".profile__text",
-  });
-
-  info.setUserInfo(data);
-
-  const editUserInfo = (data) => {
-    return api
-      .editUserInfo(data)
-      .then((obj) => {
-        avatar.src = obj.avatar;
-        info.setUserInfo(obj);
-        popupEditProfile.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // 2
-  const popupEditProfile = new PopupWithForm({
-    selector: ".popup_edit",
-    handleFormSubmit: editUserInfo,
-  });
-  popupEditProfile.setEventListeners();
-
-  function openPopupToEditProfile() {
-    popupEditProfile.setInputValues(info.getUserInfo());
-    validatorEditForm.resetErrors();
-    validatorEditForm.enableButton();
-    popupEditProfile.open();
-  }
-
-  buttonEditProfile.addEventListener("click", openPopupToEditProfile);
-
-  // Аватар
-  const editAvatar = (data) => {
-    return api
-      .editAvatar(data)
-      .then((obj) => {
-        avatar.src = obj.avatar;
-        popupEditAvatar.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // 3
-  const popupEditAvatar = new PopupWithForm({
-    selector: ".popup_avatar",
-    handleFormSubmit: editAvatar,
-  });
-  popupEditAvatar.setEventListeners();
-
-  function openPopupToEditAvatar() {
-    validatorAvatarForm.resetErrors();
-    validatorAvatarForm.disableButton();
-    popupEditAvatar.open();
-  }
-
-  avatar.addEventListener("click", openPopupToEditAvatar);
-});

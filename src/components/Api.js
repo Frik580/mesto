@@ -43,7 +43,6 @@ class Api {
     return fetch(`${this._url}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-      // body: JSON.stringify(data),
     }).then(this._handleResponse);
   };
 
@@ -70,9 +69,6 @@ class Api {
       body: JSON.stringify(data),
     }).then(this._handleResponse);
   };
-
-
-
 }
 
 export default Api;
