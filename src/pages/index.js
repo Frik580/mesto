@@ -14,19 +14,25 @@ import {
   buttonAddCard,
   cardListSelector,
   templateSelector,
+  popupFormSelectors,
+  popupSelectors,
+  selectorName,
+  selectorInfo,
+  selectorAvatar,
 } from "../utils/constants.js";
 import FormValidator from "../components/FormValidator.js";
 
-const validatorEditForm = new FormValidator(obj, ".popup-form_edit");
+const validatorEditForm = new FormValidator(obj, popupFormSelectors.edit);
 validatorEditForm.enableValidation();
-const validatorAddForm = new FormValidator(obj, ".popup-form_add");
+const validatorAddForm = new FormValidator(obj, popupFormSelectors.add);
 validatorAddForm.enableValidation();
-const validatorAvatarForm = new FormValidator(obj, ".popup-form_avatar");
+const validatorAvatarForm = new FormValidator(obj, popupFormSelectors.avatar);
 validatorAvatarForm.enableValidation();
 
 const api = new Api(config);
-
 const promises = [api.getUserInfo(), api.getInitialCards()];
+
+console.log(popupSelectors.zoom);
 
 Promise.all(promises)
   .then((results) => {
@@ -35,15 +41,12 @@ Promise.all(promises)
     const initialCards = results[1];
 
     const defaultCardList = new Section(
-      {
-        items: initialCards,
-        renderer: (item) => createCard(item),
-      },
+      { renderer: (item) => createCard(item) },
       cardListSelector
     );
     defaultCardList.renderItems(initialCards);
 
-    const popupZoomImage = new PopupWithImage(".popup_zoom");
+    const popupZoomImage = new PopupWithImage(popupSelectors.zoom);
     popupZoomImage.setEventListeners();
 
     const popupDeleteCard = new PopupWithSubmit({
@@ -61,29 +64,34 @@ Promise.all(promises)
           handleDeleteClick: (element, id) => {
             popupDeleteCard.open(element, id);
           },
-          handleAddLike: (data) => {
-            return api
-              .addLike(data)
-              .then((data) => {
-                card.addLike(data);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          },
-          handleDeleteLike: (data) => {
-            return api
-              .deleteLike(data)
-              .then((data) => {
-                card.deleteLike(data);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          },
+          handleAddLike: (data) => addLike(data),
+          handleDeleteLike: (data) => deleteLike(data),
         },
         templateSelector
       );
+
+      const addLike = (data) => {
+        return api
+          .addLike(data)
+          .then((data) => {
+            card.addLike(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
+      const deleteLike = (data) => {
+        return api
+          .deleteLike(data)
+          .then((data) => {
+            card.deleteLike(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
       return card.getCard();
     }
 
@@ -114,7 +122,7 @@ Promise.all(promises)
 
     // 1
     const popupAddCard = new PopupWithForm({
-      selector: ".popup_add",
+      selector: popupSelectors.add,
       handleFormSubmit: (data) => {
         const card = {};
         card.name = data.namecard;
@@ -134,9 +142,9 @@ Promise.all(promises)
 
     // Управление профилем
     const info = new UserInfo({
-      selectorName: ".profile__title",
-      selectorInfo: ".profile__text",
-      selectorAvatar: ".profile__avatar",
+      selectorName,
+      selectorInfo,
+      selectorAvatar,
     });
 
     info.setUserInfo(data);
@@ -155,7 +163,7 @@ Promise.all(promises)
 
     // 2
     const popupEditProfile = new PopupWithForm({
-      selector: ".popup_edit",
+      selector: popupSelectors.edit,
       handleFormSubmit: editUserInfo,
     });
     popupEditProfile.setEventListeners();
@@ -184,7 +192,7 @@ Promise.all(promises)
 
     // 3
     const popupEditAvatar = new PopupWithForm({
-      selector: ".popup_avatar",
+      selector: popupSelectors.avatar,
       handleFormSubmit: editAvatar,
     });
     popupEditAvatar.setEventListeners();

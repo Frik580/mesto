@@ -34,6 +34,20 @@ export const obj = {
   errorClass: "popup-form__item_error_active",
 };
 
+export const popupFormSelectors = {
+  edit: ".popup-form_edit",
+  add: ".popup-form_add",
+  avatar: ".popup-form_avatar",
+};
+
+export const popupSelectors = {
+  zoom: ".popup_zoom",
+  submit: ".popup_submit",
+  add: ".popup_add",
+  edit: ".popup_edit",
+  avatar: ".popup_avatar",
+};
+
 export const config = {
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-42",
   headers: {
@@ -47,6 +61,10 @@ export const avatar = document.querySelector(".profile__avatar");
 export const buttonEditProfile = document.querySelector(
   ".profile__edit-button"
 );
+
+export const selectorName = ".profile__title";
+export const selectorInfo = ".profile__text";
+export const selectorAvatar = ".profile__avatar";
 
 // Действия с карточками
 export const cardListSelector = ".elements__list";
